@@ -25,15 +25,17 @@
   var tes=document.getElementById("ab");
   var bigs=document.getElementById("scont");
   function se(){
+bigs.innerHTML=null;
 var sitem=document.getElementById("searc").value;
  
     tes.textContent="Showing search results for "+ sitem;
-    fetch(`https://newsapi.org/v2/everything?q={sitem}&apiKey=e3cfb822532547eaabf3efe8292dd517`).then(function(res){
+    
+    fetch(`https://newsapi.org/v2/everything?q=${sitem}&language=en&apiKey=e3cfb822532547eaabf3efe8292dd517`).then(function(res){
      return res.json(); 
     }).then(function(res){
       
       var arti=res["articles"];
-      
+      console.log(res);
       for(var i=0;i<20;i++)
       { 
           var card1=document.createElement("div");
@@ -50,7 +52,7 @@ var sitem=document.getElementById("searc").value;
           card1.append(titl);
           card1.append(imgs1);
           card1.append(desc1);
-          bigs.appendchild(card1);
+          bigs.appendChild(card1);
       }
       
     }).catch(function(err){
