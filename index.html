@@ -6,6 +6,10 @@
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
+
+
+
+
 </style>
 </head>
 <body>
@@ -13,13 +17,16 @@ body {
 <h2> Top headlines</h2>
 <h3 id="abc"></h3>
 <div id="container"></div>
+
+
+
 </body>
 <script>
     var big=document.getElementById("container");
     var title1=document.getElementById("abc");
   //api key e3cfb822532547eaabf3efe8292dd517
   // rand GET https://newsapi.org/v2/top-headlines?country=us&apiKey=e3cfb822532547eaabf3efe8292dd517
-   fetch("https://newsapi.org/v2/top-headlines?country=us&apiKey=e3cfb822532547eaabf3efe8292dd517").then(function(res){
+   fetch("http://newsapi.org/v2/top-headlines?country=us&apiKey=e3cfb822532547eaabf3efe8292dd517").then(function(res){
     
     return res.json();
     
@@ -28,7 +35,8 @@ body {
    var alist=res["articles"];
    var titlesc=[];
    var imgc=[];
-   for(k in alist)
+// console.log();
+   for(var k=0;k<alist.length;k++)
    {
           var singl=document.createElement("div");
           var t1=document.createElement("h3");
@@ -37,6 +45,10 @@ body {
           img1.style.height="120px";
           img1.style.width="300px";
           img1.src=res["articles"][k]["urlToImage"];
+          img1.addEventListener("click",function(k){
+			
+                        
+});
           singl.append(t1);
           singl.append(img1);
           big.appendChild(singl);
