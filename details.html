@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
+<h1>Home.html</h1>
+<h2> Top headlines</h2>
+<h3 id="abc"></h3>
+<div id="container"></div>
+</body>
+<script>
+    var big=document.getElementById("container");
+    var title1=document.getElementById("abc");
+  //api key e3cfb822532547eaabf3efe8292dd517
+  // rand GET https://newsapi.org/v2/top-headlines?country=us&apiKey=e3cfb822532547eaabf3efe8292dd517
+   fetch("https://newsapi.org/v2/top-headlines?country=us&apiKey=e3cfb822532547eaabf3efe8292dd517").then(function(res){
+    
+    return res.json();
+    
+  }).then(function(res){
+    
+   var alist=res["articles"];
+   var titlesc=[];
+   var imgc=[];
+   for(k in alist)
+   {
+          var singl=document.createElement("div");
+          var t1=document.createElement("h3");
+          t1.textContent=res["articles"][k]["title"];
+          var img1=document.createElement("img");
+          img1.style.height="120px";
+          img1.style.width="300px";
+          img1.src=res["articles"][k]["urlToImage"];
+          singl.append(t1);
+          singl.append(img1);
+          big.appendChild(singl);
+   }
+    //title1.textContent=res["articles"][0]["title"];
+  }).catch(function(err){
+    
+    
+    console.log(err);
+    
+  });
+
+</script>
+</html>
